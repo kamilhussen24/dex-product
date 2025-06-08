@@ -73,37 +73,37 @@ header.active {
 
 /* Remove separator for desktop */
 @media (min-width: 769px) {
-    .nav-menu::before {
-        display: none; /* Remove blue line in desktop */
-    }
+ .nav-menu::before {
+ display: none; /* Remove blue line in desktop */
+ }
+}
 
-    nav ul.menu {
-        justify-content: flex-start; /* Align items to the left */
-        margin-left: 2rem; /* Space from the left */
-        flex-direction: row; /* Ensure items stay in a row */
-    }
+nav ul.menu {
+ list-style: none;
+ display: flex;
+ align-items: center;
+}
 
-    nav ul.menu li {
-        margin: 0 0.5rem; /* Keep items close */
-        display: inline-block; /* Ensure inline display */
-    }
+nav ul.menu li {
+ margin: 0 1rem;
+}
 
-    nav ul.menu li a {
-        color: #333;
-        text-decoration: none;
-        font-size: 1.1rem;
-        padding: 0.5rem 1rem;
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-        transition: color 0.3s, background 0.3s;
-    }
+nav ul.menu li a {
+ color: #333;
+ text-decoration: none;
+ font-size: 1.1rem;
+ padding: 0.5rem 0.5rem;
+ display: flex;
+ align-items: center;
+ gap: 0.5rem;
+ transition: color 0.3s, background 0.3s;
+}
 
-    nav ul.menu li a:hover {
-        color: #007aff;
-        background: #f1f5ff;
-        border-radius: 8px;
-    }
+nav ul.menu li a:hover {
+ color: #007aff;
+ background: #f1f5ff;
+ border-radius: 8px;
+}    
 
 /* Hero Section */
 .hero {
