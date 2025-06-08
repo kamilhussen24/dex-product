@@ -4,8 +4,6 @@
     { "source": "/contact", "destination": "/contact.html" },
     { "source": "/policy", "destination": "/policy.html" },
     { "source": "/404", "destination": "/404.html" },
-    { "source": "/facebook-bin-number", "destination": "/facebook-bin-number.html" },
-    { "source": "/product/(.*)", "destination": "/product/index.html" },
-    { "source": "/:path*", "destination": "/index.html" }
+    { "source": "/facebook-bin-number", "destination": "/facebook-bin-number.html" }
   ]
 }
