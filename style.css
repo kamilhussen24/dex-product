@@ -82,6 +82,7 @@ nav ul.menu {
  list-style: none;
  display: flex;
  align-items: center;
+  margin-left: auto;
 }
 
 nav ul.menu li {
