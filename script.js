@@ -24,7 +24,7 @@ $(document).ready(function() {
                     <img src="${product.image}" alt="${product.name}">
                     <h3>${product.name}</h3>
                     <p>Price: ${product.price}</p>
-                    <a href="Product/${product.link}">
+                    <a href="product/${product.link}">
             <i class="fas fa-shopping-cart"></i> Buy Now </a>
                 </div>
             `;
