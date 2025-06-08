@@ -1,0 +1,32 @@
+[
+    {
+        "name": "Bin Number For Facebook Ads",
+        "price": "৳200",
+        "image": "../image/facebook-bin.jpg",
+        "link": "facebook-bin-number.html"
+    },
+    {
+        "name": "Italy Resident Permit Psd",
+        "price": "৳500",
+        "image": "Image/fa.jpg",
+        "link": "facebook-bin-number.html"
+    },
+    {
+        "name": "Netflix Premium",
+        "price": "৳3500",
+        "image": "../Image/facebook-bin.jpg",
+        "link": "facebook-bin-number.html"
+    },
+    {
+        "name": "Spotify Premium",
+        "price": "৳1800",
+        "image": "../Image/facebook-bin.jpg",
+        "link": "facebook-bin-number.html"
+    },
+    {
+        "name": "Adobe Creative Cloud",
+        "price": "৳5000",
+        "image": "../Image/facebook-bin.jpg",
+        "link": "facebook-bin-number.html"
+    }
+]
