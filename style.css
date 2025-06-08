@@ -89,14 +89,15 @@ nav ul.menu li {
 }
 
 nav ul.menu li a {
- color: #333;
- text-decoration: none;
- font-size: 1.1rem;
- padding: 0.5rem 0.5rem;
- display: flex;
- align-items: center;
- gap: 0.5rem;
- transition: color 0.3s, background 0.3s;
+  color: #333;
+  text-decoration: none;
+  font-size: 1.1rem;
+  padding: 0.5rem 0.5rem;
+  padding-left: 1.5rem; /* বাম পাশে বাড়তি ফাঁকা */
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: color 0.3s, background 0.3s;
 }
 
 nav ul.menu li a:hover {
