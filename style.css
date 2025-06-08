@@ -108,7 +108,7 @@ nav ul.menu li a:hover {
 /* Hero Section */
 .hero {
  text-align: center;
- padding: 100px 2rem 50px;
+ padding: 100px 20rem 50px;
  background: linear-gradient(to bottom, #f9fafc, #ffffff);
  color: #333;
  animation: fadeIn 1s ease-in;
