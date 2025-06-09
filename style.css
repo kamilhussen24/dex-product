@@ -358,27 +358,27 @@ nav ul.menu li a:hover {
 .product-details .feature-list {
   list-style: none;
   padding: 0;
-  margin: 1rem 0;
+  margin: 1.5rem 0;
   display: flex;
   flex-direction: column;
-  align-items: flex-start; /* ⬅️ Center নয়, এখন left aligned */
+  gap: 1rem;
 }
 
 .product-details .feature-list li {
   display: flex;
-  align-items: flex-start; /* আইকন আর লেখা ঠিকঠাক থাকবে */
-  gap: 0.6rem;
-  margin: 0.5rem 0;
+  align-items: flex-start;
   font-size: 1rem;
-  color: #444; /* হালকা dark কালার */
-  line-height: 1.5;
+  color: #444;
+  line-height: 1.6;
   max-width: 100%;
 }
 
 .product-details .feature-list li i {
   color: #007aff;
   font-size: 1.1rem;
-  margin-top: 0.2rem; /* আইকন slightly নিচে নামানো যেন ব্যালান্স হয় */
+  flex-shrink: 0;
+  margin-right: 0.6rem;
+  margin-top: 0.2rem;
 }
 
 .product-details .description-text {
