@@ -356,29 +356,26 @@ nav ul.menu li a:hover {
 }
 
 .product-details .feature-list {
-  list-style: none;
-  padding: 0;
-  margin: 1.5rem 0;
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
+ list-style: none;
+ padding: 0;
+ margin: 1rem 0;
+ display: flex;
+ flex-direction: column;
+ align-items: center;
 }
 
 .product-details .feature-list li {
-  display: flex;
-  align-items: flex-start;
-  font-size: 1rem;
-  color: #444;
-  line-height: 1.6;
-  max-width: 100%;
+ display: flex;
+ align-items: center;
+ gap: 0.5rem;
+ margin: 0.5rem 0;
+ font-size: 1rem;
+ color: #666;
+ max-width: 600px;
 }
 
 .product-details .feature-list li i {
-  color: #007aff;
-  font-size: 1.1rem;
-  flex-shrink: 0;
-  margin-right: 0.6rem;
-  margin-top: 0.2rem;
+ color: #007aff;
 }
 
 .product-details .description-text {
