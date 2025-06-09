@@ -356,26 +356,29 @@ nav ul.menu li a:hover {
 }
 
 .product-details .feature-list {
- list-style: none;
- padding: 0;
- margin: 1rem 0;
- display: flex;
- flex-direction: column;
- align-items: center;
+  list-style: none;
+  padding: 0;
+  margin: 2rem 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  align-items: center;
 }
 
 .product-details .feature-list li {
- display: flex;
- align-items: center;
- gap: 0.5rem;
- margin: 0.5rem 0;
- font-size: 1rem;
- color: #666;
- max-width: 600px;
+  text-align: center;
+  color: #333;
+  font-size: 1rem;
+  line-height: 1.5;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .product-details .feature-list li i {
- color: #007aff;
+  color: #28a745; /* সবুজ রঙের টিক */
+  font-size: 1.4rem;
+  margin-bottom: 0.3rem;
 }
 
 .product-details .description-text {
