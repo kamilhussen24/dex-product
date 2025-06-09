@@ -50,7 +50,7 @@ $(document).ready(function() {
         });
     }
 
-    // Fetch Product.json
+    // Fetch Products.json
     $.getJSON('products/products.json', function(products) {
         console.log('Successfully loaded Product.json:', products);
         initializeProducts(products);
