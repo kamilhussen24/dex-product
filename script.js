@@ -7,8 +7,8 @@ $(document).ready(function() {
 
     // Fallback product data in case Product.json fails to load
     const fallbackProducts = [
-        { name: "Prodact Load Error", price: "৳000", image: "Image/Error-load.jpg", link: "404.html" },
-        { name: "Prodact Load Error", price: "৳000", image: "Image/Error-load.jpg", link: "404.html" }
+        { name: "Prodact Load Error", price: "৳000", image: "image/error-load.jpg", link: "404.html" },
+        { name: "Prodact Load Error", price: "৳000", image: "image/error-load.jpg", link: "404.html" }
     ];
 
     // Load products function
@@ -24,7 +24,7 @@ $(document).ready(function() {
                     <img src="${product.image}" alt="${product.name}">
                     <h3>${product.name}</h3>
                     <p>Price: ${product.price}</p>
-                    <a href="product/${product.link}">
+                    <a href="products/${product.link}">
             <i class="fas fa-shopping-cart"></i> Buy Now </a>
                 </div>
             `;
@@ -51,7 +51,7 @@ $(document).ready(function() {
     }
 
     // Fetch Product.json
-    $.getJSON('product/product.json', function(products) {
+    $.getJSON('products/products.json', function(products) {
         console.log('Successfully loaded Product.json:', products);
         initializeProducts(products);
     }).fail(function(jqxhr, textStatus, error) {
@@ -60,7 +60,7 @@ $(document).ready(function() {
         initializeProducts(fallbackProducts);
     });
 
-    // WhatsApp Order with Product Link
+    // WhatsApp Order with Products Link
     $('.order-now').click(function(e) {
         e.preventDefault();
         const product = $(this).data('product');

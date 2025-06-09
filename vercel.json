@@ -5,6 +5,6 @@
     { "source": "/policy", "destination": "/policy.html" },
     { "source": "/404", "destination": "/404.html" },
 
-    { "source": "/product/:slug", "destination": "/product/:slug.html" }
+    { "source": "/products/:slug", "destination": "/products/:slug.html" }
   ]
 }

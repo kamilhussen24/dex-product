@@ -1,8 +1,0 @@
-name = "my-simple-site"
-compatibility_date = "2025-06-08"
-
-[site]
-bucket = "./"
-entry-point = "."
-
-# যদি অন্য ডিরেক্টরি হয়, তাহলে bucket="./dist" বা যেটা আপনার
