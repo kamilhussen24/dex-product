@@ -9,6 +9,14 @@
  <meta name="robots" content="index, follow">
  <meta name="theme-color" content="#007aff" />
  
+ <!-- favicon -->
+<link rel="icon" type="image/png" href="/image/favicon-96x96.png" sizes="96x96" />
+<link rel="icon" type="image/png" sizes="32x32" href="/image/favicon-32x32.png" />
+<link rel="icon" type="image/png" sizes="16x16" href="/image/favicon-16x16.png" />
+<link rel="icon" type="image/svg+xml" href="/image/favicon.svg" />
+<link rel="shortcut icon" href="/image/favicon.ico" />
+<link rel="apple-touch-icon" sizes="180x180" href="/image/apple-touch-icon.png" />
+
  <!-- Open Graph -->
  <meta property="og:title" content="Contact Dex Product">
  <meta property="og:description" content="Get in touch with Dex Product for support or inquiries via WhatsApp, email, or our contact form.">
@@ -55,26 +63,42 @@
 
  <!-- Main Content -->
  <main>
- <section class="content">
- <h1>Contact Us</h1>
- <p>We’re here to help! Reach out to us for any questions, support, or feedback.</p>
- <h2>Get in Touch</h2>
- <ul>
-  <li><i class="fab fa-whatsapp"></i> WhatsApp: <a href="https://wa.me/+8801402143420" style="text-decoration: none;">+8801402143420</a></li>
-  <li><i class="fas fa-envelope"></i> Email: <a href="mailto: contact@kamildex.com" style="text-decoration: none;">contact@kamildex.com</a></li>
-</ul>
- <h2>Send a Message</h2>
- <form class="contact-form" action="#" method="post">
- <label for="name">Name</label>
- <input type="text" id="name" name="name" required>
- <label for="email">Email</label>
- <input type="email" id="email" name="email" required>
- <label for="message">Message</label>
- <textarea id="message" name="message" rows="5" required></textarea>
- <button type="submit">Send Message</button>
- </form>
- </section>
- </main>
+  <section class="content">
+    <h1>Contact Us</h1>
+    <p>We’re here to help! Reach out to us for any questions, support, or feedback.</p>
+
+    <h2>Get in Touch</h2>
+    <ul>
+      <li>
+        <i class="fab fa-whatsapp"></i> WhatsApp:
+        <a href="https://wa.me/+8801402143420" style="text-decoration: none;">+8801402143420</a>
+      </li>
+      <li>
+        <i class="fas fa-envelope"></i> Email:
+        <a href="mailto:contact@kamildex.com" style="text-decoration: none;">contact@kamildex.com</a>
+      </li>
+    </ul>
+
+    <h2>Send a Message</h2>
+    <form class="contact-form" action="https://formsubmit.co/contact@kamildex.com" method="POST">
+      <!-- Hidden Configs -->
+      <input type="hidden" name="_subject" value="New message from contact form">
+      <input type="hidden" name="_captcha" value="false">
+      <input type="hidden" name="_next" value="https://prodact.kamildex.com/thank-you.html">
+
+      <label for="name">Name</label>
+      <input type="text" id="name" name="name" required>
+
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email" required>
+
+      <label for="message">Message</label>
+      <textarea id="message" name="message" rows="5" required></textarea>
+
+      <button type="submit">Send Message</button>
+    </form>
+  </section>
+</main>
 
  <!-- Footer -->
  <footer>
