@@ -3,12 +3,12 @@
         "name": "Bin Number For Facebook Ads",
         "price": "৳200",
         "image": "/products/image/facebook-bin.jpg",
-        "link": "facebook-bin-number"
+        "link": "/facebook-bin-number"
     },
     {
         "name": "Italy Residence Permit Psd",
         "price": "৳500",
         "image": "/products/image/Italy-residence-permit-psd.jpg",
-        "link": "Italy-residence-permit-psd"
+        "link": "/italy-residence-permit-psd"
     }
 ]

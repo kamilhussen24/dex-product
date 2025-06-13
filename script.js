@@ -7,8 +7,8 @@ $(document).ready(function() {
 
     // Fallback products data in case Product.json fails to load
     const fallbackProducts = [
-        { name: "Prodact Load Error", price: "৳000", image: "image/error-load.jpg", link: "404.html" },
-        { name: "Prodact Load Error", price: "৳000", image: "image/error-load.jpg", link: "404.html" }
+        { name: "Prodact Load Error", price: "৳000", image: "/image/error-load.jpg", link: "/404.html" },
+        { name: "Prodact Load Error", price: "৳000", image: "/image/error-load.jpg", link: "/404.html" }
     ];
 
     // Load products function
