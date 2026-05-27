@@ -10,7 +10,7 @@
  <meta name="author" content="Kamil Hussen">
  <meta name="robots" content="index, follow">
  <meta name="theme-color" content="#007aff" />
-
+ 
  <!-- favicon -->
 <link rel="icon" type="image/png" href="/image/favicon-96x96.png" sizes="96x96" />
 <link rel="icon" type="image/png" sizes="32x32" href="/image/favicon-32x32.png" />
@@ -25,12 +25,16 @@
  <meta property="og:type" content="product">
  <meta property="og:url" content="https://product.kamildex.com/products/italy-residence-permit-psd">
  <meta property="og:image" content="https://product.kamildex.com/products/image/italy-residence-permit-psd.jpg">
-
+ 
  <title>Italy Residence Permit Editable PSD File Download</title>
+ <!-- Cloudflare CDN for Font Awesome -->
  <link rel="canonical" href="https://product.kamildex.com/products/italy-residence-permit-psd" />
  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+ 
+ <!-- Custom CSS -->
  <link rel="stylesheet" href="/style.css">
-
+ <!-- Schema for SEO -->
+ <!-- Schema for SEO -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -55,7 +59,7 @@
 <script src="//code.tidio.co/fm43laakn35vr01a30legbuvwlmydgrc.js" async></script>
 </head>
 <body>
-
+	
  <!-- Header -->
  <header>
  <div class="logo">
@@ -95,13 +99,17 @@
      </ul>
      <p class="description-text">
        This editable Italy Residence Permit PSD file is ideal for those who need to use realistic templates for various verification purposes. <br>
-       Whether you're submitting for KYC, uploading to websites, or preparing identity verification mockups, this file is 100% working and editable. <br>
+       Whether you’re submitting for KYC, uploading to websites, or preparing identity verification mockups, this file is 100% working and editable. <br>
        Easily replace text, photo, and other elements using Photoshop or any compatible editor. No hassle – just plug, edit, and use.
      </p>
    </div>
-
-   <!-- Order Button -->
-   <button class="btn-order" id="orderBtn">Order Now</button>
+   <a href="#" class="order-now" id="orderBtn"
+      data-product="Italy Residence Permit PSD File" 
+      data-price="৳500" 
+      data-desc="Editable Italy Residence Permit Template for multiple verification." 
+      data-link="https://product.kamildex.com/products/italy-residence-permit-psd">
+     <i class="fas fa-bolt"></i> Order Now
+   </a>
  </section>
 </main>
 
@@ -109,64 +117,69 @@
  <footer>
  <p>© 2025 Dex Product. All rights reserved.</p>
  <div class="social">
-   <a href="https://facebook.com/kamildexbd" title="Facebook"><i class="fab fa-facebook"></i></a>
-   <a href="https://t.me/kamildex" title="Telegram"><i class="fab fa-telegram"></i></a>
+ 	<a href="https:/facebook.com/kamildexbd" title="Facebook"><i class="fab fa-facebook"></i></a>
+ <a href="https://wa.me/8801402143420?text=From%20Dex%20Product" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+ <a href="https://t.me/kamildex" title="Telegram"><i class="fab fa-telegram"></i></a>
  </div>
  </footer>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-<script src="/script.js"></script>
+ <!-- Cloudflare CDN for JavaScript -->
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+ <script src="/script.js"></script>
 
 <script>
-document.getElementById('orderBtn').addEventListener('click', async function () {
-  const btn = this;
-  btn.disabled = true;
-  btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
+// Override WhatsApp handler for this page only
+$(document).ready(function() {
+  $('#orderBtn').off('click').on('click', async function(e) {
+    e.preventDefault();
+    e.stopImmediatePropagation();
 
-  try {
-    const res = await fetch('https://gateway.kamildex.com/api/v1/orders', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'X-API-Key': 'mk_live_e36b1a881c7e9cfef4ea6b6be39a26ae64a8616b85e6b95e'
-      },
-      body: JSON.stringify({
-        amount: '3',
-        currency: 'USDT',
-        gateway: 'binance',
-        description: 'Italy Residence Permit PSD File',
-        success_type: 'r2_download',
-        success_payload: 'Italy-Residence-Permit.zip',
-        success_url: 'https://product.kamildex.com/pay-success.html',
-      })
-    });
+    const btn = $(this);
+    btn.html('<i class="fas fa-spinner fa-spin"></i> Processing...');
+    btn.css('pointer-events', 'none');
 
-    const data = await res.json();
-
-    if (data.checkout_url) {
-      // Redirect to KDex Pay checkout
-      const params = new URLSearchParams({
-        api_key:  'mk_live_e36b1a881c7e9cfef4ea6b6be39a26ae64a8616b85e6b95e',
-        order_id:  data.order_id,
-        amount:    '3',
-        product:   'Italy Residence Permit PSD',
-        merchant:  'Dex Product',
-        redirect:  'https://product.kamildex.com/pay-success.html',
+    try {
+      const res = await fetch('https://gateway.kamildex.com/api/v1/orders', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-API-Key': 'mk_live_e36b1a881c7e9cfef4ea6b6be39a26ae64a8616b85e6b95e'
+        },
+        body: JSON.stringify({
+          amount: '3',
+          currency: 'USDT',
+          gateway: 'binance',
+          description: 'Italy Residence Permit PSD File',
+          success_type: 'r2_download',
+          success_payload: 'Italy-Residence-Permit.zip',
+        })
       });
-      window.location.href = 'https://gateway.kamildex.com/pay?' + params.toString();
-    } else {
-      alert('Something went wrong. Please try again.');
-      btn.disabled = false;
-      btn.innerHTML = '<i class="fas fa-shopping-cart"></i> Order Now';
-    }
 
-  } catch (e) {
-    alert('Connection error. Please try again.');
-    btn.disabled = false;
-    btn.innerHTML = '<i class="fas fa-shopping-cart"></i> Order Now';
-  }
+      const data = await res.json();
+
+      if (data.order_id) {
+        const params = new URLSearchParams({
+          api_key:  'mk_live_e36b1a881c7e9cfef4ea6b6be39a26ae64a8616b85e6b95e',
+          order_id:  data.order_id,
+          amount:    '3',
+          product:   'Italy Residence Permit PSD',
+          merchant:  'Dex Product',
+          redirect:  'https://product.kamildex.com/pay-success.html',
+        });
+        window.location.href = 'https://gateway.kamildex.com/pay?' + params.toString();
+      } else {
+        alert('Something went wrong. Please try again.');
+        btn.html('<i class="fas fa-bolt"></i> Order Now');
+        btn.css('pointer-events', 'auto');
+      }
+
+    } catch (err) {
+      alert('Connection error. Please try again.');
+      btn.html('<i class="fas fa-bolt"></i> Order Now');
+      btn.css('pointer-events', 'auto');
+    }
+  });
 });
 </script>
-
 </body>
 </html>
