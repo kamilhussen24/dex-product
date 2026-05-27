@@ -362,13 +362,25 @@ async function init() {
       const parts    = payload.split('/');
       const fileName = decodeURIComponent(parts[parts.length - 1]) || 'download';
       document.getElementById('dl-filename').textContent = fileName;
-      document.getElementById('dl-filemeta').textContent = 'Click below to download';
+      document.getElementById('dl-filemeta').textContent = 'Downloading automatically...';
       document.getElementById('dl-btn').onclick = () => {
         const a = document.createElement('a');
         a.href = payload; a.download = fileName; a.target = '_blank';
         a.click();
       };
       showState('download');
+
+      // Auto download after 1.5 seconds
+      setTimeout(() => {
+        const a = document.createElement('a');
+        a.href = payload;
+        a.download = fileName;
+        a.target = '_blank';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        document.getElementById('dl-filemeta').textContent = 'Download started! Click button if not started.';
+      }, 1500);
 
     } else if (type === 'redirect') {
       window.location.href = payload;
