@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Payment Successful — KDex Pay</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { -webkit-font-smoothing: antialiased; }
+  body {
+    min-height: 100vh;
+    background: #FFF;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 0;
+  }
+
+  .page {
+    width: 100%;
+    max-width: 480px;
+    background: #FFF;
+    min-height: 100vh;
+  }
+
+  /* Header */
+  .header {
+    padding: 32px 28px 24px;
+    text-align: center;
+    border-bottom: 2px solid #F0F0F0;
+  }
+  .logo-wrap { display: flex; justify-content: center; margin-bottom: 14px; }
+  .merchant-text { font-size: 14px; font-weight: 500; color: #666; margin-bottom: 10px; }
+  .merchant-name { color: #111; font-weight: 700; }
+  .amount-row { display: flex; align-items: baseline; gap: 8px; justify-content: center; margin-bottom: 8px; }
+  .amount-num { font-size: 38px; font-weight: 800; color: #111; letter-spacing: -2px; line-height: 1; }
+  .amount-cur { font-size: 18px; font-weight: 700; color: #111; }
+  .product-name { font-size: 14px; font-weight: 500; color: #888; }
+
+  /* Body */
+  .body { padding: 28px 22px; }
+
+  /* States */
+  .state { display: none; }
+  .state.active { display: block; animation: up .26s cubic-bezier(.16,1,.3,1) both; }
+  @keyframes up  { from{opacity:0;transform:translateY(8px)} to{opacity:1;transform:translateY(0)} }
+  @keyframes spin { to{transform:rotate(360deg)} }
+  @keyframes pop { from{opacity:0;transform:scale(.88)} to{opacity:1;transform:scale(1)} }
+
+  /* Loading */
+  .spinner {
+    width: 48px; height: 48px;
+    border: 3px solid #F0F0F0;
+    border-top-color: #D4006E;
+    border-radius: 50%;
+    animation: spin .7s linear infinite;
+    margin: 20px auto 20px;
+  }
+  .loading-title { font-size: 17px; font-weight: 700; color: #111; text-align: center; margin-bottom: 6px; }
+  .loading-sub   { font-size: 14px; font-weight: 500; color: #666; text-align: center; }
+
+  /* Success icon */
+  .success-icon {
+    width: 72px; height: 72px;
+    background: #FFF0F7;
+    border: 3px solid #D4006E;
+    border-radius: 50%;
+    display: grid; place-items: center;
+    margin: 4px auto 18px;
+    animation: pop .4s cubic-bezier(.175,.885,.32,1.275) both;
+  }
+  .success-title { font-size: 22px; font-weight: 800; color: #111; text-align: center; margin-bottom: 8px; }
+  .success-sub   { font-size: 14px; font-weight: 500; color: #666; text-align: center; margin-bottom: 24px; line-height: 1.6; }
+
+  /* Info box */
+  .info-box {
+    background: #F8F8F8;
+    border: 2px solid #E8E8E8;
+    border-radius: 14px;
+    padding: 16px 18px;
+    margin-bottom: 14px;
+  }
+  .box-label {
+    font-size: 12px; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 1px;
+    margin-bottom: 8px;
+  }
+
+  /* File row */
+  .file-row { display: flex; align-items: center; gap: 13px; }
+  .file-icon {
+    width: 44px; height: 44px;
+    background: #FFF0F7;
+    border: 2px solid #D4006E50;
+    border-radius: 11px;
+    display: grid; place-items: center;
+    flex-shrink: 0;
+  }
+  .file-name { font-size: 15px; font-weight: 700; color: #111; margin-bottom: 3px; }
+  .file-meta { font-size: 13px; font-weight: 500; color: #666; }
+
+  /* License key */
+  .license-key {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 18px; font-weight: 500;
+    color: #1A1A1A; letter-spacing: 2px;
+    word-break: break-all; line-height: 1.6;
+  }
+
+  /* Message */
+  .message-text {
+    font-size: 15px; font-weight: 500;
+    color: #333; line-height: 1.7;
+  }
+
+  /* Copy button */
+  .copy-btn {
+    display: flex; align-items: center; gap: 6px;
+    background: none; border: none; cursor: pointer;
+    font-size: 14px; font-weight: 600;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    color: #555; margin-top: 12px; padding: 0;
+    transition: color .15s;
+  }
+  .copy-btn:hover { color: #D4006E; }
+  .copy-btn.copied { color: #D4006E; }
+
+  /* Primary button */
+  .btn-primary {
+    width: 100%;
+    background: #D4006E;
+    color: #FFF;
+    border: none;
+    border-radius: 13px;
+    padding: 16px;
+    font-size: 16px; font-weight: 700;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    cursor: pointer;
+    box-shadow: 0 6px 24px #D4006E40;
+    transition: all .15s;
+    display: flex; align-items: center; justify-content: center; gap: 8px;
+    margin-bottom: 10px;
+  }
+  .btn-primary:hover { opacity: .88; transform: translateY(-1px); }
+
+  /* Secondary button */
+  .btn-secondary {
+    width: 100%;
+    background: transparent;
+    color: #444;
+    border: 2px solid #BBBBBB;
+    border-radius: 13px;
+    padding: 14px;
+    font-size: 15px; font-weight: 700;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    cursor: pointer;
+    transition: all .15s;
+  }
+  .btn-secondary:hover { background: #F5F5F5; border-color: #999; color: #222; }
+
+  /* Error */
+  .error-icon {
+    width: 72px; height: 72px;
+    background: #FEF2F2;
+    border: 3px solid #FECACA;
+    border-radius: 50%;
+    display: grid; place-items: center;
+    margin: 4px auto 18px;
+    animation: pop .4s cubic-bezier(.175,.885,.32,1.275) both;
+  }
+  .error-title { font-size: 22px; font-weight: 800; color: #111; text-align: center; margin-bottom: 8px; }
+  .error-box {
+    background: #FEF2F2; border: 2px solid #FECACA;
+    border-radius: 12px; padding: 12px 16px;
+    font-size: 14px; font-weight: 600;
+    color: #991B1B; text-align: center;
+    margin-bottom: 20px; line-height: 1.5;
+  }
+
+  /* Footer */
+  .footer {
+    padding: 14px 22px 18px;
+    border-top: 2px solid #F0F0F0;
+    display: flex; justify-content: center; align-items: center; gap: 6px;
+    font-size: 13px; font-weight: 600; color: #555;
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- Header -->
+  <div class="header">
+    <div class="logo-wrap" id="logo-wrap">
+      <!-- Default KDex logo, replaced by custom if provided -->
+      <svg width="52" height="52" viewBox="0 0 52 52" id="default-logo">
+        <defs>
+          <linearGradient id="g1" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#D4006E"/>
+            <stop offset="100%" stop-color="#FF4DB8"/>
+          </linearGradient>
+        </defs>
+        <rect width="52" height="52" rx="14" fill="url(#g1)"/>
+        <path d="M14 13h5.5v9.5L28 13h7L26 24l9.5 13H29L21.5 27V37H14V13z" fill="white"/>
+      </svg>
+    </div>
+    <p class="merchant-text">Pay to <span class="merchant-name" id="merchant-name">KDex</span></p>
+    <div class="amount-row" id="amount-row" style="display:none;">
+      <span class="amount-num" id="header-amount"></span>
+      <span class="amount-cur">USDT</span>
+    </div>
+    <p class="product-name" id="product-name" style="display:none;"></p>
+  </div>
+
+  <!-- Body -->
+  <div class="body">
+
+    <!-- Loading -->
+    <div class="state active" id="state-loading">
+      <div class="spinner"></div>
+      <div class="loading-title">Confirming payment...</div>
+      <div class="loading-sub">Please wait a moment</div>
+    </div>
+
+    <!-- Download -->
+    <div class="state" id="state-download">
+      <div class="success-icon">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#D4006E" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+      </div>
+      <div class="success-title">Payment Confirmed!</div>
+      <p class="success-sub">Your file is ready to download.</p>
+      <div class="info-box">
+        <div class="file-row">
+          <div class="file-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#D4006E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+          </div>
+          <div>
+            <div class="file-name" id="dl-filename">Your File</div>
+            <div class="file-meta" id="dl-filemeta">Ready to download</div>
+          </div>
+        </div>
+      </div>
+      <button class="btn-primary" id="dl-btn">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Download Now
+      </button>
+    </div>
+
+    <!-- License -->
+    <div class="state" id="state-license">
+      <div class="success-icon">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#D4006E" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+      </div>
+      <div class="success-title">Payment Confirmed!</div>
+      <p class="success-sub">Your license key is ready.</p>
+      <div class="info-box">
+        <p class="box-label" style="color:#F0B90B;">License Key</p>
+        <div class="license-key" id="license-key-text">—</div>
+        <button class="copy-btn" id="copy-key-btn">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+          Copy Key
+        </button>
+      </div>
+    </div>
+
+    <!-- Message -->
+    <div class="state" id="state-message">
+      <div class="success-icon">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#D4006E" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+      </div>
+      <div class="success-title">Payment Confirmed!</div>
+      <div class="info-box" style="margin-top:8px;">
+        <p class="box-label" style="color:#D4006E;">Your Order</p>
+        <div class="message-text" id="message-text">—</div>
+      </div>
+    </div>
+
+    <!-- Error -->
+    <div class="state" id="state-error">
+      <div class="error-icon">
+        <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#991B1B" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </div>
+      <div class="error-title">Access Denied</div>
+      <div class="error-box" id="error-msg-text">Invalid or expired token.</div>
+      <button class="btn-secondary" onclick="window.history.back()">Go Back</button>
+    </div>
+
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#16A34A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
+    KDex Pay
+  </div>
+
+</div>
+
+<script>
+const GATEWAY = 'https://kdex-gateway.vercel.app';
+
+function showState(id) {
+  document.querySelectorAll('.state').forEach(s => s.classList.remove('active'));
+  document.getElementById('state-' + id).classList.add('active');
+}
+
+function showError(msg) {
+  document.getElementById('error-msg-text').textContent = msg || 'Invalid or expired token.';
+  showState('error');
+}
+
+async function init() {
+  const params   = new URLSearchParams(window.location.search);
+  const token    = params.get('token');
+  const amount   = params.get('amount');
+  const product  = params.get('product');
+  const merchant = params.get('merchant') || 'KDex';
+  const logo     = params.get('logo');
+
+  // Merchant name
+  document.getElementById('merchant-name').textContent = merchant;
+
+  // Custom logo
+  if (logo) {
+    document.getElementById('default-logo').style.display = 'none';
+    const img = document.createElement('img');
+    img.src = logo; img.alt = 'Logo';
+    img.style.cssText = 'width:52px;height:52px;border-radius:14px;object-fit:cover;';
+    document.getElementById('logo-wrap').appendChild(img);
+  }
+
+  // Amount
+  if (amount && amount !== 'null') {
+    document.getElementById('header-amount').textContent = parseFloat(amount).toFixed(2);
+    document.getElementById('amount-row').style.display = 'flex';
+  }
+
+  // Product name
+  if (product) {
+    document.getElementById('product-name').textContent = product;
+    document.getElementById('product-name').style.display = 'block';
+  }
+
+  if (!token) {
+    showError('No payment token found. Please complete your purchase first.');
+    return;
+  }
+
+  try {
+    const res  = await fetch(`${GATEWAY}/api/v1/token/verify?token=${token}`);
+    const data = await res.json();
+
+    if (!data.valid) {
+      showError(data.error || 'Invalid or expired token.');
+      return;
+    }
+
+    const { type, payload } = data;
+
+    if (type === 'download' || type === 'r2_download') {
+      const parts    = payload.split('/');
+      const fileName = decodeURIComponent(parts[parts.length - 1]) || 'download';
+      document.getElementById('dl-filename').textContent = fileName;
+      document.getElementById('dl-filemeta').textContent = 'Click below to download';
+      document.getElementById('dl-btn').onclick = () => {
+        const a = document.createElement('a');
+        a.href = payload; a.download = fileName; a.target = '_blank';
+        a.click();
+      };
+      showState('download');
+
+    } else if (type === 'redirect') {
+      window.location.href = payload;
+
+    } else if (type === 'license') {
+      document.getElementById('license-key-text').textContent = payload;
+      const btn = document.getElementById('copy-key-btn');
+      btn.onclick = () => {
+        navigator.clipboard.writeText(payload).then(() => {
+          btn.innerHTML = `<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#D4006E" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Copied!`;
+          btn.classList.add('copied');
+          setTimeout(() => {
+            btn.innerHTML = `<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg> Copy Key`;
+            btn.classList.remove('copied');
+          }, 2000);
+        });
+      };
+      showState('license');
+
+    } else if (type === 'message') {
+      document.getElementById('message-text').textContent = payload;
+      showState('message');
+
+    } else {
+      showError('Unknown product type.');
+    }
+
+  } catch(e) {
+    showError('Cannot connect to server. Please try again.');
+  }
+}
+
+init();
+</script>
+</body>
+</html>
