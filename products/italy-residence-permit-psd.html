@@ -103,31 +103,33 @@
        Easily replace text, photo, and other elements using Photoshop or any compatible editor. No hassle – just plug, edit, and use.
      </p>
    </div>
-   <a href="#" class="order-now" id="orderBtn"
+   <a href="#" class="order-now" 
       data-product="Italy Residence Permit PSD File" 
       data-price="৳500" 
       data-desc="Editable Italy Residence Permit Template for multiple verification." 
       data-link="https://product.kamildex.com/products/italy-residence-permit-psd">
-     <i class="fab fa-whatsapp"></i> Order via WhatsApp
+     <i class="fab fa-whatsapp"></i> Order Now
    </a>
 
-   <button id="kdexPayBtn" style="
-     display: block;
-     width: 100%;
-     margin-top: 12px;
-     padding: 14px 24px;
+   <a href="#" id="kdexPayBtn" style="
+     display: inline-flex;
+     align-items: center;
+     gap: 0.5rem;
      background: #D4006E;
-     color: #fff;
-     border: none;
-     border-radius: 50px;
-     font-size: 16px;
-     font-weight: 700;
-     cursor: pointer;
-     font-family: inherit;
-     letter-spacing: 0.3px;
+     color: #ffffff;
+     padding: 0.8rem 2rem;
+     border-radius: 25px;
+     text-decoration: none;
+     margin-top: 0.8rem;
+     margin-bottom: 6.5rem;
+     font-size: 1.1rem;
+     font-weight: 500;
+     box-shadow: 0 4px 12px rgba(212, 0, 110, 0.35);
+     transition: background 0.3s, transform 0.3s;
+     animation: pulseGlow 2.5s infinite;
    ">
-     ⚡ Buy Now — $3.00 USDT
-   </button>
+     <i class="fas fa-bolt"></i> Buy Now — $3.00 USDT
+   </a>
  </section>
 </main>
 
@@ -149,8 +151,8 @@
 document.getElementById('kdexPayBtn').addEventListener('click', async function(e) {
   e.preventDefault();
   const btn = this;
-  btn.textContent = '⏳ Processing...';
-  btn.disabled = true;
+  btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
+  btn.style.pointerEvents = 'none';
 
   try {
     const res = await fetch('https://gateway.kamildex.com/api/v1/orders', {
@@ -179,18 +181,17 @@ document.getElementById('kdexPayBtn').addEventListener('click', async function(e
         product:   'Italy Residence Permit PSD',
         merchant:  'Dex Product',
         logo:      'https://product.kamildex.com/image/android-chrome-512x512.png',
-        redirect:  'https://gateway.kamildex.com/pay-success.html',
       });
       window.location.href = 'https://gateway.kamildex.com/pay?' + params.toString();
     } else {
       alert('Something went wrong. Please try again.');
-      btn.textContent = '⚡ Buy Now — $3.00 USDT';
-      btn.disabled = false;
+      btn.innerHTML = '<i class="fas fa-bolt"></i> Buy Now — $3.00 USDT';
+      btn.style.pointerEvents = 'auto';
     }
   } catch (err) {
     alert('Connection error. Please try again.');
-    btn.textContent = '⚡ Buy Now — $3.00 USDT';
-    btn.disabled = false;
+    btn.innerHTML = '<i class="fas fa-bolt"></i> Buy Now — $3.00 USDT';
+    btn.style.pointerEvents = 'auto';
   }
 });
 </script>
