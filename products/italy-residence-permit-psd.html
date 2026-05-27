@@ -27,31 +27,19 @@
  <meta property="og:image" content="https://product.kamildex.com/products/image/italy-residence-permit-psd.jpg">
  
  <title>Italy Residence Permit Editable PSD File Download - Dex Product</title>
- <!-- Cloudflare CDN for Font Awesome -->
  <link rel="canonical" href="https://product.kamildex.com/products/italy-residence-permit-psd" />
  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
- 
- <!-- Custom CSS -->
  <link rel="stylesheet" href="/style.css">
- <!-- Schema for SEO -->
+ 
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Product",
   "name": "Italy Residence Permit PSD File",
   "image": "https://product.kamildex.com/products/image/italy-residence-permit-psd.jpg",
-  "description": "Professional Italy Residence Permit PSD template for graphic designers and creative professionals.",
-  "brand": {
-    "@type": "Brand",
-    "name": "Dex Product"
-  },
-  "offers": {
-    "@type": "Offer",
-    "price": "3",
-    "priceCurrency": "USD",
-    "availability": "https://schema.org/InStock",
-    "url": "https://product.kamildex.com/products/italy-residence-permit-psd"
-  }
+  "description": "Professional Italy Residence Permit PSD template for graphic designers.",
+  "brand": {"@type": "Brand","name": "Dex Product"},
+  "offers": {"@type": "Offer","price": "3","priceCurrency": "USD","availability": "https://schema.org/InStock"}
 }
 </script>
 
@@ -59,14 +47,9 @@
 </head>
 <body>
   
- <!-- Header -->
  <header>
- <div class="logo">
- <a href="/" class="logo-link"><h1>Dex Product</h1></a>
- </div>
- <div class="menu-toggle">
- <i class="fas fa-bars"></i>
- </div>
+ <div class="logo"><a href="/" class="logo-link"><h1>Dex Product</h1></a></div>
+ <div class="menu-toggle"><i class="fas fa-bars"></i></div>
  <nav class="nav-menu">
  <ul class="menu">
  <li><a href="/"><i class="fas fa-home"></i> Home</a></li>
@@ -77,7 +60,6 @@
  </nav>
  </header>
 
- <!-- Main Content -->
  <main>
  <section class="product-details">
    <h1 class="product-title">Italy Residence Permit PSD File</h1>
@@ -104,14 +86,12 @@
      </p>
    </div>
    
-   <!-- Buy Now Button - Direct Payment (No CORS Issue) -->
    <button id="buyNowBtn" style="background: #D4006E; color: white; border: none; padding: 14px 28px; border-radius: 10px; font-size: 16px; font-weight: bold; cursor: pointer; display: inline-block; width: auto; margin-top: 10px;">
      <i class="fab fa-binance"></i> Buy Now — $3 USD
    </button>
  </section>
 </main>
 
- <!-- Footer -->
  <footer>
  <p>© 2025 Dex Product. All rights reserved.</p>
  <div class="social">
@@ -120,26 +100,73 @@
  </div>
  </footer>
 
- <!-- Cloudflare CDN for JavaScript -->
  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
  <script src="/script.js"></script>
  
- <!-- Payment Script - Direct Checkout (No API Call, No CORS) -->
  <script>
-// সরাসরি checkout URL - কোনো fetch বা API কল নেই, তাই CORS error থাকবে না
-document.getElementById('buyNowBtn').addEventListener('click', function() {
-  // Checkout URL parameters
-  const params = new URLSearchParams({
-    api_key: 'mk_live_e36b1a881c7e9cfef4ea6b6be39a26ae64a8616b85e6b95e',
-    product: 'Italy Residence Permit PSD',
-    amount: '3',
-    merchant: 'Dex Product',
-    logo: 'https://product.kamildex.com/image/favicon-96x96.png',
-    redirect: 'https://product.kamildex.com/pay-success.html'
-  });
+// Configuration
+const API_KEY = 'mk_live_e36b1a881c7e9cfef4ea6b6be39a26ae64a8616b85e6b95e';
+const STORE_NAME = 'Dex Product';
+const LOGO_URL = 'https://product.kamildex.com/image/favicon-96x96.png';
+const PRODUCT_NAME = 'Italy Residence Permit PSD';
+const FILE_NAME = 'Italy-Residence-Permit.zip';
+
+const buyBtn = document.getElementById('buyNowBtn');
+
+buyBtn.addEventListener('click', async function() {
+  // Show loading
+  const originalHtml = buyBtn.innerHTML;
+  buyBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
+  buyBtn.disabled = true;
   
-  // Redirect to payment page
-  window.location.href = `https://kdex-gateway.vercel.app/pay?${params}`;
+  try {
+    // Step 1: Create order via JSONP or fetch with mode
+    const response = await fetch('https://kdex-gateway.vercel.app/api/v1/orders', {
+      method: 'POST',
+      mode: 'cors',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-API-Key': API_KEY
+      },
+      body: JSON.stringify({
+        amount: '3',
+        gateway: 'binance',
+        description: PRODUCT_NAME,
+        success_type: 'r2_download',
+        success_payload: FILE_NAME,
+        success_url: 'https://product.kamildex.com/pay-success.html'
+      })
+    });
+    
+    if (!response.ok) {
+      throw new Error(`HTTP ${response.status}`);
+    }
+    
+    const data = await response.json();
+    
+    if (!data.order_id) {
+      throw new Error('No order_id received');
+    }
+    
+    // Step 2: Redirect to checkout with order_id
+    const params = new URLSearchParams({
+      api_key: API_KEY,
+      order_id: data.order_id,
+      amount: '3',
+      product: PRODUCT_NAME,
+      merchant: STORE_NAME,
+      logo: LOGO_URL,
+      redirect: 'https://product.kamildex.com/pay-success.html'
+    });
+    
+    window.location.href = `https://kdex-gateway.vercel.app/pay?${params}`;
+    
+  } catch (error) {
+    console.error('Error:', error);
+    alert('Payment system error: ' + error.message + '\nPlease try again or contact support.');
+    buyBtn.innerHTML = originalHtml;
+    buyBtn.disabled = false;
+  }
 });
 </script>
 </body>
