@@ -48,8 +48,8 @@
   },
   "offers": {
     "@type": "Offer",
-    "price": "3",
-    "priceCurrency": "USD",
+    "price": "500",
+    "priceCurrency": "BDT",
     "availability": "https://schema.org/InStock",
     "url": "https://product.kamildex.com/products/italy-residence-permit-psd"
   }
@@ -85,7 +85,7 @@
    <img src="/products/image/italy-residence-permit-psd.jpg" alt="Italy Residence Permit PSD Template" class="product-img">
    <div class="product-overview">
      <h2 class="product-subtitle">Fully Editable Italy Residence Permit Template</h2>
-     <p class="product-price">Price: <strong>$3.00 USDT</strong></p>
+     <p class="product-price">Price: <strong>৳500</strong></p>
      <p class="product-text">Get a 100% working, editable Italy Residence Permit PSD file – perfect for various online and offline verifications.</p>
    </div>
    <div class="product-description">
@@ -103,12 +103,12 @@
        Easily replace text, photo, and other elements using Photoshop or any compatible editor. No hassle – just plug, edit, and use.
      </p>
    </div>
-   <a href="#" class="order-now" id="orderBtn"
+   <a href="#" class="order-now" 
       data-product="Italy Residence Permit PSD File" 
       data-price="৳500" 
       data-desc="Editable Italy Residence Permit Template for multiple verification." 
       data-link="https://product.kamildex.com/products/italy-residence-permit-psd">
-     <i class="fas fa-bolt"></i> Order Now
+     <i class="fab fa-whatsapp"></i> Order Now
    </a>
  </section>
 </main>
@@ -126,61 +126,5 @@
  <!-- Cloudflare CDN for JavaScript -->
  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
  <script src="/script.js"></script>
-
-<script>
-// Override WhatsApp handler for this page only
-$(document).ready(function() {
-  $('#orderBtn').off('click').on('click', async function(e) {
-    e.preventDefault();
-    e.stopImmediatePropagation();
-
-    const btn = $(this);
-    btn.html('<i class="fas fa-spinner fa-spin"></i> Processing...');
-    btn.css('pointer-events', 'none');
-
-    try {
-      const res = await fetch('https://gateway.kamildex.com/api/v1/orders', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'X-API-Key': 'mk_live_e36b1a881c7e9cfef4ea6b6be39a26ae64a8616b85e6b95e'
-        },
-        body: JSON.stringify({
-          amount: '3',
-          currency: 'USDT',
-          gateway: 'binance',
-          description: 'Italy Residence Permit PSD File',
-          success_type: 'r2_download',
-          success_payload: 'Italy-Residence-Permit.zip',
-        })
-      });
-
-      const data = await res.json();
-
-      if (data.order_id) {
-        const params = new URLSearchParams({
-          api_key:  'mk_live_e36b1a881c7e9cfef4ea6b6be39a26ae64a8616b85e6b95e',
-          order_id:  data.order_id,
-          amount:    '3',
-          product:   'Italy Residence Permit PSD',
-          merchant:  'Dex Product',
-          logo:      'https://product.kamildex.com/image/android-chrome-512x512.png',
-          redirect:  'https://gateway.kamildex.com/pay-success.html',
-        });
-        window.location.href = 'https://gateway.kamildex.com/pay?' + params.toString();
-      } else {
-        alert('Something went wrong. Please try again.');
-        btn.html('<i class="fas fa-bolt"></i> Order Now');
-        btn.css('pointer-events', 'auto');
-      }
-
-    } catch (err) {
-      alert('Connection error. Please try again.');
-      btn.html('<i class="fas fa-bolt"></i> Order Now');
-      btn.css('pointer-events', 'auto');
-    }
-  });
-});
-</script>
 </body>
 </html>
