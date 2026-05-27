@@ -311,12 +311,6 @@ function showError(msg) {
 }
 
 async function init() {
-  // Prevent re-verify on page refresh
-  const tokenKey = 'kdex_verified_' + (new URLSearchParams(location.search).get('token') || '');
-  if (sessionStorage.getItem(tokenKey)) {
-    showError('This payment link has already been used. Please contact support if you need help.');
-    return;
-  }
   const params   = new URLSearchParams(window.location.search);
   const token    = params.get('token');
   const amount   = params.get('amount');
@@ -362,8 +356,7 @@ async function init() {
       return;
     }
 
-    // Mark as verified in session to prevent refresh re-use
-    sessionStorage.setItem(tokenKey, '1');
+
 
     const { type, payload } = data;
 
