@@ -110,9 +110,24 @@
       data-link="https://product.kamildex.com/products/italy-residence-permit-psd">
      <i class="fab fa-whatsapp"></i> Order via WhatsApp
    </a>
-   <a href="#" class="order-now" id="payBtn" style="margin-top:10px;">
-     <i class="fas fa-bolt"></i> Buy Now
-   </a>
+
+   <button id="kdexPayBtn" style="
+     display: block;
+     width: 100%;
+     margin-top: 12px;
+     padding: 14px 24px;
+     background: #D4006E;
+     color: #fff;
+     border: none;
+     border-radius: 50px;
+     font-size: 16px;
+     font-weight: 700;
+     cursor: pointer;
+     font-family: inherit;
+     letter-spacing: 0.3px;
+   ">
+     ⚡ Buy Now — $3.00 USDT
+   </button>
  </section>
 </main>
 
@@ -131,11 +146,11 @@
  <script src="/script.js"></script>
 
 <script>
-document.getElementById('payBtn').addEventListener('click', async function(e) {
+document.getElementById('kdexPayBtn').addEventListener('click', async function(e) {
   e.preventDefault();
   const btn = this;
-  btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
-  btn.style.pointerEvents = 'none';
+  btn.textContent = '⏳ Processing...';
+  btn.disabled = true;
 
   try {
     const res = await fetch('https://gateway.kamildex.com/api/v1/orders', {
@@ -169,13 +184,13 @@ document.getElementById('payBtn').addEventListener('click', async function(e) {
       window.location.href = 'https://gateway.kamildex.com/pay?' + params.toString();
     } else {
       alert('Something went wrong. Please try again.');
-      btn.innerHTML = '<i class="fas fa-bolt"></i> Buy Now';
-      btn.style.pointerEvents = 'auto';
+      btn.textContent = '⚡ Buy Now — $3.00 USDT';
+      btn.disabled = false;
     }
   } catch (err) {
     alert('Connection error. Please try again.');
-    btn.innerHTML = '<i class="fas fa-bolt"></i> Buy Now';
-    btn.style.pointerEvents = 'auto';
+    btn.textContent = '⚡ Buy Now — $3.00 USDT';
+    btn.disabled = false;
   }
 });
 </script>
