@@ -103,13 +103,54 @@
        Easily replace text, photo, and other elements using Photoshop or any compatible editor. No hassle – just plug, edit, and use.
      </p>
    </div>
-   <a href="#" class="order-now" 
-      data-product="Italy Residence Permit PSD File" 
-      data-price="৳500" 
-      data-desc="Editable Italy Residence Permit Template for multiple verification." 
-      data-link="https://product.kamildex.com/products/italy-residence-permit-psd">
-     <i class="fab fa-whatsapp"></i> Order Now
-   </a>
+   <button id="buyNowBtn" class="order-now" style="border:none; cursor:pointer; width:100%; text-align:center;">
+     <i class="fab fa-binance"></i> Buy Now — $3 USD
+   </button>
+
+<script>
+const API_KEY = 'mk_live_e36b1a881c7e9cfef4ea6b6be39a26ae64a8616b85e6b95e';
+const STORE_NAME = 'Dex Product';
+const LOGO_URL = 'https://product.kamildex.com/image/favicon-96x96.png';
+
+async function buyProduct() {
+  try {
+    const res = await fetch('https://kdex-gateway.vercel.app/api/v1/orders', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-API-Key': API_KEY
+      },
+      body: JSON.stringify({
+        amount: '3',
+        gateway: 'binance',
+        description: 'Italy Residence Permit',
+        success_type: 'r2_download',
+        success_payload: 'Italy-Residence-Permit.zip',
+        success_url: 'https://product.kamildex.com/pay-success.html'
+      })
+    });
+    
+    const data = await res.json();
+    
+    const params = new URLSearchParams({
+      api_key: API_KEY,
+      order_id: data.order_id,
+      amount: '3',
+      product: 'Italy Residence Permit PSD',
+      merchant: STORE_NAME,
+      logo: LOGO_URL,
+      redirect: 'https://product.kamildex.com/pay-success.html'
+    });
+    
+    window.location.href = `https://kdex-gateway.vercel.app/pay?${params}`;
+    
+  } catch(error) {
+    alert('Payment error: ' + error.message);
+  }
+}
+
+document.getElementById('buyNowBtn').addEventListener('click', buyProduct);
+</script>
  </section>
 </main>
 
