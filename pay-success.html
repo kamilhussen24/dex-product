@@ -310,7 +310,10 @@ function showError(msg) {
   showState('error');
 }
 
+let _initialized = false;
 async function init() {
+  if (_initialized) return;
+  _initialized = true;
   const params   = new URLSearchParams(window.location.search);
   const token    = params.get('token');
   const amount   = params.get('amount');
