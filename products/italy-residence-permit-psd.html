@@ -48,13 +48,15 @@
   },
   "offers": {
     "@type": "Offer",
-    "price": "3",
-    "priceCurrency": "USD",
+    "price": "500",
+    "priceCurrency": "BDT",
     "availability": "https://schema.org/InStock",
     "url": "https://product.kamildex.com/products/italy-residence-permit-psd"
   }
 }
 </script>
+
+<script src="//code.tidio.co/fm43laakn35vr01a30legbuvwlmydgrc.js" async></script>
 </head>
 <body>
 	
@@ -83,7 +85,7 @@
    <img src="/products/image/italy-residence-permit-psd.jpg" alt="Italy Residence Permit PSD Template" class="product-img">
    <div class="product-overview">
      <h2 class="product-subtitle">Fully Editable Italy Residence Permit Template</h2>
-     <p class="product-price">Price: <strong>$3.00 USDT</strong></p>
+     <p class="product-price">Price: <strong>৳500</strong></p>
      <p class="product-text">Get a 100% working, editable Italy Residence Permit PSD file – perfect for various online and offline verifications.</p>
    </div>
    <div class="product-description">
@@ -108,26 +110,6 @@
       data-link="https://product.kamildex.com/products/italy-residence-permit-psd">
      <i class="fab fa-whatsapp"></i> Order Now
    </a>
-
-   <a href="#" id="kdexPayBtn" style="
-     display: inline-flex;
-     align-items: center;
-     gap: 0.5rem;
-     background: #D4006E;
-     color: #ffffff;
-     padding: 0.8rem 2rem;
-     border-radius: 25px;
-     text-decoration: none;
-     margin-top: 0.8rem;
-     margin-bottom: 6.5rem;
-     font-size: 1.1rem;
-     font-weight: 500;
-     box-shadow: 0 4px 12px rgba(212, 0, 110, 0.35);
-     transition: background 0.3s, transform 0.3s;
-     animation: pulseGlow 2.5s infinite;
-   ">
-     <i class="fas fa-bolt"></i> Buy Now — $3.00 USDT
-   </a>
  </section>
 </main>
 
@@ -144,54 +126,5 @@
  <!-- Cloudflare CDN for JavaScript -->
  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
  <script src="/script.js"></script>
-
-<script>
-document.getElementById('kdexPayBtn').addEventListener('click', async function(e) {
-  e.preventDefault();
-  const btn = this;
-  btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
-  btn.style.pointerEvents = 'none';
-
-  try {
-    const res = await fetch('https://gateway.kamildex.com/api/v1/orders', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'X-API-Key': 'mk_live_e36b1a881c7e9cfef4ea6b6be39a26ae64a8616b85e6b95e'
-      },
-      body: JSON.stringify({
-        amount: '3',
-        currency: 'USDT',
-        gateway: 'binance',
-        description: 'Italy Residence Permit PSD File',
-        success_type: 'r2_download',
-        success_payload: 'Italy-Residence-Permit.zip',
-      })
-    });
-
-    const data = await res.json();
-
-    if (data.order_id) {
-      const params = new URLSearchParams({
-        api_key:  'mk_live_e36b1a881c7e9cfef4ea6b6be39a26ae64a8616b85e6b95e',
-        order_id:  data.order_id,
-        amount:    '3',
-        product:   'Italy Residence Permit PSD',
-        merchant:  'Dex Product',
-        logo:      'https://product.kamildex.com/image/android-chrome-512x512.png',
-      });
-      window.location.href = 'https://gateway.kamildex.com/pay?' + params.toString();
-    } else {
-      alert('Something went wrong. Please try again.');
-      btn.innerHTML = '<i class="fas fa-bolt"></i> Buy Now — $3.00 USDT';
-      btn.style.pointerEvents = 'auto';
-    }
-  } catch (err) {
-    alert('Connection error. Please try again.');
-    btn.innerHTML = '<i class="fas fa-bolt"></i> Buy Now — $3.00 USDT';
-    btn.style.pointerEvents = 'auto';
-  }
-});
-</script>
 </body>
 </html>
