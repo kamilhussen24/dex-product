@@ -103,17 +103,42 @@
        Easily replace text, photo, and other elements using Photoshop or any compatible editor. No hassle – just plug, edit, and use.
      </p>
    </div>
-   <button id="buyNowBtn" class="order-now" style="border:none; cursor:pointer; width:100%; text-align:center;">
+   <!-- Buy Now Button - Direct Payment -->
+   <button id="buyNowBtn" style="background: #D4006E; color: white; border: none; padding: 14px 28px; border-radius: 10px; font-size: 16px; font-weight: bold; cursor: pointer; display: inline-block; width: auto; margin-top: 10px;">
      <i class="fab fa-binance"></i> Buy Now — $3 USD
    </button>
+ </section>
+</main>
 
-<script>
+ <!-- Footer -->
+ <footer>
+ <p>© 2025 Dex Product. All rights reserved.</p>
+ <div class="social">
+  <a href="https://facebook.com/kamildexbd" title="Facebook"><i class="fab fa-facebook"></i></a>
+ <a href="https://t.me/kamildex" title="Telegram"><i class="fab fa-telegram"></i></a>
+ </div>
+ </footer>
+
+ <!-- Cloudflare CDN for JavaScript -->
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+ <script src="/script.js"></script>
+ 
+ <!-- Payment Script -->
+ <script>
+// Payment API Configuration
 const API_KEY = 'mk_live_e36b1a881c7e9cfef4ea6b6be39a26ae64a8616b85e6b95e';
 const STORE_NAME = 'Dex Product';
 const LOGO_URL = 'https://product.kamildex.com/image/favicon-96x96.png';
 
 async function buyProduct() {
   try {
+    // Show loading state
+    const btn = document.getElementById('buyNowBtn');
+    const originalText = btn.innerHTML;
+    btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
+    btn.disabled = true;
+    
+    // Create order
     const res = await fetch('https://kdex-gateway.vercel.app/api/v1/orders', {
       method: 'POST',
       headers: {
@@ -123,7 +148,7 @@ async function buyProduct() {
       body: JSON.stringify({
         amount: '3',
         gateway: 'binance',
-        description: 'Italy Residence Permit',
+        description: 'Italy Residence Permit PSD',
         success_type: 'r2_download',
         success_payload: 'Italy-Residence-Permit.zip',
         success_url: 'https://product.kamildex.com/pay-success.html'
@@ -132,6 +157,11 @@ async function buyProduct() {
     
     const data = await res.json();
     
+    if (!data.order_id) {
+      throw new Error('Failed to create order');
+    }
+    
+    // Redirect to KDex Pay
     const params = new URLSearchParams({
       api_key: API_KEY,
       order_id: data.order_id,
@@ -146,26 +176,19 @@ async function buyProduct() {
     
   } catch(error) {
     alert('Payment error: ' + error.message);
+    const btn = document.getElementById('buyNowBtn');
+    btn.innerHTML = '<i class="fab fa-binance"></i> Buy Now — $3 USD';
+    btn.disabled = false;
   }
 }
 
-document.getElementById('buyNowBtn').addEventListener('click', buyProduct);
+// Add click event when page loads
+document.addEventListener('DOMContentLoaded', function() {
+  const buyBtn = document.getElementById('buyNowBtn');
+  if (buyBtn) {
+    buyBtn.addEventListener('click', buyProduct);
+  }
+});
 </script>
- </section>
-</main>
-
- <!-- Footer -->
- <footer>
- <p>© 2025 Dex Product. All rights reserved.</p>
- <div class="social">
- 	<a href="https:/facebook.com/kamildexbd" title="Facebook"><i class="fab fa-facebook"></i></a>
- <a href="https://wa.me/8801402143420?text=From%20Dex%20Product" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
- <a href="https://t.me/kamildex" title="Telegram"><i class="fab fa-telegram"></i></a>
- </div>
- </footer>
-
- <!-- Cloudflare CDN for JavaScript -->
- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
- <script src="/script.js"></script>
 </body>
 </html>
