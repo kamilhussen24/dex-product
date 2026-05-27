@@ -361,7 +361,9 @@ async function init() {
     const { type, payload } = data;
 
     if (type === 'download' || type === 'r2_download') {
-      const parts    = payload.split('/');
+      // Extract clean filename - remove query params
+      const urlPath  = payload.split('?')[0];
+      const parts    = urlPath.split('/');
       const fileName = decodeURIComponent(parts[parts.length - 1]) || 'download';
       document.getElementById('dl-filename').textContent = fileName;
       document.getElementById('dl-filemeta').textContent = 'Downloading automatically...';
