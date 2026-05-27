@@ -103,8 +103,15 @@
        Easily replace text, photo, and other elements using Photoshop or any compatible editor. No hassle – just plug, edit, and use.
      </p>
    </div>
-   <a href="#" class="order-now" id="payBtn">
-     <i class="fas fa-bolt"></i> Order Now
+   <a href="#" class="order-now" id="orderBtn"
+      data-product="Italy Residence Permit PSD File" 
+      data-price="৳500" 
+      data-desc="Editable Italy Residence Permit Template for multiple verification." 
+      data-link="https://product.kamildex.com/products/italy-residence-permit-psd">
+     <i class="fab fa-whatsapp"></i> Order via WhatsApp
+   </a>
+   <a href="#" class="order-now" id="payBtn" style="margin-top:10px;">
+     <i class="fas fa-bolt"></i> Buy Now
    </a>
  </section>
 </main>
@@ -162,12 +169,12 @@ document.getElementById('payBtn').addEventListener('click', async function(e) {
       window.location.href = 'https://gateway.kamildex.com/pay?' + params.toString();
     } else {
       alert('Something went wrong. Please try again.');
-      btn.innerHTML = '<i class="fas fa-bolt"></i> Order Now';
+      btn.innerHTML = '<i class="fas fa-bolt"></i> Buy Now';
       btn.style.pointerEvents = 'auto';
     }
   } catch (err) {
     alert('Connection error. Please try again.');
-    btn.innerHTML = '<i class="fas fa-bolt"></i> Order Now';
+    btn.innerHTML = '<i class="fas fa-bolt"></i> Buy Now';
     btn.style.pointerEvents = 'auto';
   }
 });
