@@ -405,7 +405,7 @@ nav ul.menu li a:hover {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  background: #ff3b30;
+  background: #1ebe5d;
   color: #ffffff;
   padding: 0.8rem 2rem;
   border-radius: 25px;
@@ -416,7 +416,6 @@ nav ul.menu li a:hover {
   font-weight: 500;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
   transition: background 0.3s, transform 0.3s;
-  animation: pulseGlow 2.5s infinite;
 }
 
 .product-details .order-now:hover {
